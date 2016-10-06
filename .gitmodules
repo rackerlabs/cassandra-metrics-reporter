@@ -1,3 +1,0 @@
-[submodule "metrics-reporter-config"]
-	path = metrics-reporter-config
-	url = git://github.com/dlobue/metrics-reporter-config.git
