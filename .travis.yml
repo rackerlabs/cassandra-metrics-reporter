@@ -11,14 +11,12 @@ cache:
 script: 
   - mvn clean install 
 
-after_success:
-
-before_deploy:
-  - git config --global user.email "builds@travis-ci.com"
-  - git config --global user.name "Travis CI"
-  - export GIT_TAG=$TRAVIS_BRANCH-v1.0.$TRAVIS_BUILD_NUMBER
-  - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
-  - git push -q https://$API_KEY@github.com/rackerlabs/cassandra-metrics-reporter --tags
+#before_deploy:
+#  - git config --global user.email "builds@travis-ci.com"
+#  - git config --global user.name "Travis CI"
+#  - export GIT_TAG=$TRAVIS_BRANCH-v1.0.$TRAVIS_BUILD_NUMBER
+#  - git tag $GIT_TAG -a -m "Generated tag from TravisCI for build $TRAVIS_BUILD_NUMBER"
+#  - git push -q https://$API_KEY@github.com/rackerlabs/cassandra-metrics-reporter --tags
 
 deploy:
   skip_cleanup: true
@@ -30,8 +28,8 @@ deploy:
   on:
     repo: rackerlabs/cassandra-metrics-reporter
     tags: false
-    branch: master
+    branch: rax-releases
     jdk: oraclejdk8
 
 notifications:
-  irc: "irc.rackspace.com#metrics"
+    irc: "irc.rackspace.com#metrics"
