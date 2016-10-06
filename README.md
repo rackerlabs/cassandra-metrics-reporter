@@ -1,20 +1,19 @@
 # Overview
 
+Cassandra uses Codahale/DropWizard library for publishing metrics. The Codahale/DropWizard supports pluggable Reporters
+for any consumers of the API to publish their metrics to various storage technologies. The mechanism to configure these
+Reporters is through coding it. 
+
+Someone created https://github.com/addthis/metrics-reporter-config so configuring Reporters can be done through
+a yaml file. But the above repo does not provide/build an uber jar that works as is for our servers. They just have
+a normal libary jar containing just their classes, not the dependencies.
+
 This component is a simple one that just bundles the jar file from https://github.com/addthis/metrics-reporter-config and
 its relevant dependencies into an uber jar. Although there is nothing here that's specific to Cassandra, this component 
 was created to build the uber jar to be used with Cassandra servers for their metrics reporting. I.e: it may require
 adjustments to make it work with other kinds of servers.
 
 The resulting cassandra-metrics-reporter jar supports Riemann and Graphite metrics reporters.
-
-# Background
-
-Cassandra uses Codahale/DropWizard library for publishing metrics. The Codahale/DropWizard supports pluggable Reporters
-for any consumers of the API to publish their metrics to various storage technologies. The mechanism to configure these
-Reporters is through coding it. 
-
-Someone created https://github.com/addthis/metrics-reporter-config so configuring Reporters can be done through
-a yaml file. 
 
 # How to Build
 
