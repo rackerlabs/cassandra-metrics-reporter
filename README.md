@@ -1,10 +1,11 @@
 # Overview
 
 This component is a simple one that just bundles the jar file from https://github.com/addthis/metrics-reporter-config and
-its relevant dependency into an uber jar. Although there is nothing particularly specific to Cassandra, this component 
-was created to build the uber jar to be used with Cassandra servers for their metrics reporting.
+its relevant dependencies into an uber jar. Although there is nothing here that's specific to Cassandra, this component 
+was created to build the uber jar to be used with Cassandra servers for their metrics reporting. I.e: it may require
+adjustments to make it work with other kinds of servers.
 
-The resulting uber jar can be used to send Cassandra metrics to Reimann and Graphite.
+The resulting cassandra-metrics-reporter jar supports Riemann and Graphite metrics reporters.
 
 # How to Build
 
