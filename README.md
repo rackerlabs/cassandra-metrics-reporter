@@ -7,9 +7,15 @@ was created to build the uber jar to be used with Cassandra servers for their me
 The resulting uber jar can be used to send Cassandra metrics to Reimann and Graphite.
 
 # How to Build
+
+## For Cassandra 2.0.x
 ```
 mvn clean install
 ```
+
+## For Cassandra 2.1.x
+TBD
+
 The uber jar should be located in target/ directory
 
 # Version Compatibility Matrix
