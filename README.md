@@ -1,3 +1,5 @@
+[ ![Build Status] [travis-image] ] [travis]
+
 # Overview
 
 Cassandra uses Codahale/DropWizard library for publishing metrics. The Codahale/DropWizard supports pluggable Reporters
