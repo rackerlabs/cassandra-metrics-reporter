@@ -8,7 +8,7 @@ cache:
   directories:
     - $HOME/.m2
 
-script: 
+install: 
   - mvn clean install 
 
 #before_deploy:
