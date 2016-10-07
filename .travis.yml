@@ -28,7 +28,7 @@ deploy:
   on:
     repo: rackerlabs/cassandra-metrics-reporter
     tags: false
-    branch: rax-releases
+    branch: rax-release
     jdk: oraclejdk8
 
 notifications:
