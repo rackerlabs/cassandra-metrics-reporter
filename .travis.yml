@@ -24,7 +24,7 @@ deploy:
   api_key: $API_KEY
   file_glob: true
   file:
-    - "./target/metrics-reporter-config-bundle-*-cassandra20x.jar"
+    - "./target/cassandra-metrics-reporter-*-cassandra20x.jar"
   on:
     repo: rackerlabs/cassandra-metrics-reporter
     tags: false
