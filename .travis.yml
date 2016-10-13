@@ -9,7 +9,8 @@ cache:
     - $HOME/.m2
 
 install: 
-  - mvn clean install 
+  - mvn clean install -P cassandra20x
+  - mvn install -P cassandra21x
 
 before_deploy:
   - git config --global user.email "builds@travis-ci.com"
@@ -25,6 +26,7 @@ deploy:
   file_glob: true
   file:
     - "./target/cassandra-metrics-reporter-*-cassandra20x.jar"
+    - "./target/cassandra-metrics-reporter-*-cassandra21x.jar"
   on:
     repo: rackerlabs/cassandra-metrics-reporter
     tags: false
