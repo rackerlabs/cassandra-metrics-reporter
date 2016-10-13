@@ -72,6 +72,7 @@ g/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
                         <version>2.2</version>
                         <executions>
                             <execution>
+                                <id>shade-${jar.classifier}</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>shade</goal>
@@ -96,7 +97,77 @@ g/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
                         <version>1.12</version>
                         <executions>
                             <execution>
-                                <id>attach-artifacts</id>
+                                <id>attach-artifacts-${jar.classifier}</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>attach-artifact</goal>
+                                </goals>
+                                <configuration>
+                                    <artifacts>
+                                        <artifact>
+                                            <file>target/${project.artifactId}-${project.version}-${jar.classifier}.jar</file>
+                                            <type>jar</type>
+                                            <classifier>${jar.classifier}</classifier>
+                                        </artifact>
+                                    </artifacts>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <!-- This profile will build the cassandra-metrics-reporter jar 
+                 that's suitable for Cassandra 2.1.x
+            -->
+            <id>cassandra21x</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <jar.classifier>cassandra21x</jar.classifier>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-shade-plugin</artifactId>
+                        <version>2.2</version>
+                        <executions>
+                            <execution>
+                                <id>shade-${jar.classifier}</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>shade</goal>
+                                </goals>
+                                <configuration>
+                                    <finalName>${project.artifactId}-${project.version}-${jar.classifier}</finalName>
+                                    <artifactSet>
+                                        <excludes>
+                                            <!-- We are not excluding Netty dependency of metrics-reporter-config
+                                                 because Cassandra 2.1.x has moved to Netty 4.x. But 
+                                                 metrics-reporter-config's reporter-config2 and Riemann
+                                                 reporter are still using Netty 3.x. The 2 Netty versions
+                                                 happen to have different package names. So essentially,
+                                                 they are "shaded" by default.
+                                            -->
+                                            <exclude>com.yammer.metrics:metrics-core:jar:</exclude>
+                                            <exclude>org.slf4j:slf4j-simple:jar:</exclude>
+                                            <exclude>com.google.guava:guava:jar:</exclude>
+                                        </excludes>
+                                    </artifactSet>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.mojo</groupId>
+                        <artifactId>build-helper-maven-plugin</artifactId>
+                        <version>1.12</version>
+                        <executions>
+                            <execution>
+                                <id>attach-artifacts-${jar.classifier}</id>
                                 <phase>package</phase>
                                 <goals>
                                     <goal>attach-artifact</goal>

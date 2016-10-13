@@ -1,6 +1,4 @@
 # cassandra-metrics-reporter
-[ ![Build Status] [travis-image] ] [travis]
-[ ![License] [license-image] ] [license]
 
 # Overview
 
@@ -27,16 +25,19 @@ mvn clean install
 ```
 
 ## For Cassandra 2.1.x
-TBD
+```
+mvn -P cassandra21x install
+```
+
 
 The uber jar should be located in target/ directory
 
 # Version Compatibility Matrix
 
-| Version | Classifier   | Cassandra | Netty | Codahale/DropWizard | metrics-reporter-config | Riemann |
-|---------|--------------|-----------|-------|---------------------|-------------------------|---------|
-| 3.0.3   | cassandra20x | 2.0.x     | 3.x   | 2.x                 | 3.0.3                   | 0.2.8   |
-| 3.0.3   | cassandra21x | 2.1.x     | 4.x   | 2.x                 | 3.0.3                   | 0.2.8   |
+| Version | Classifier   | Cassandra | C* Netty | Codahale/DropWizard | metrics-reporter-config | Riemann |
+|---------|--------------|-----------|----------|---------------------|-------------------------|---------|
+| 3.0.3   | cassandra20x | 2.0.x     | 3.x      | 2.x                 | 3.0.3                   | 0.2.8   |
+| 3.0.3   | cassandra21x | 2.1.x     | 4.x      | 2.x                 | 3.0.3                   | 0.2.8   |
 
 ## Notes
 
